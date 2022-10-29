@@ -1,17 +1,8 @@
-buttonClicks.onButtonHeld(buttonClicks.AorB.B, function () {
-    turtle.setPosition(0, 0)
-    turtle.turnRight()
-    for (let index = 0; index < 4; index++) {
-        turtle.forward(4)
-        turtle.turnLeft()
-        turtle.forward(1)
-        turtle.turnLeft()
-        turtle.forward(4)
-        turtle.turnRight()
-        turtle.forward(1)
-        turtle.turnLeft()
-    }
-})
+enum RadioMessage {
+    message1 = 49434,
+    Smile = 23553,
+    Sad = 2621
+}
 buttonClicks.onButtonSingleClicked(buttonClicks.AorB.A, function () {
     for (let index = 0; index < 3; index++) {
         music.playMelody("B A G A F E F E ", 120)
@@ -27,72 +18,38 @@ buttonClicks.onButtonSingleClicked(buttonClicks.AorB.B, function () {
     radio.sendNumber(69)
     music.playMelody("C5 B C5 B C5 A G F ", 120)
 })
-buttonClicks.onButtonHeld(buttonClicks.AorB.A, function () {
-    Who = randint(1, 4)
-    if (Who == 1) {
-        basic.showArrow(ArrowNames.North)
-    } else if (Who == 2) {
-        basic.showArrow(ArrowNames.East)
-    } else if (Who == 3) {
-        basic.showArrow(ArrowNames.South)
-    } else {
-        basic.showArrow(ArrowNames.West)
-    }
-})
 buttonClicks.onButtonDoubleClicked(buttonClicks.AorB.A, function () {
-    RPS = randint(1, 3)
-    if (RPS == 1) {
-        basic.showLeds(`
-            # # # # #
-            # # # # #
-            # # # # #
-            # # # # #
-            # # # # #
-            `)
-    } else if (RPS == 2) {
-        basic.showLeds(`
-            . . . . .
-            . # # # .
-            . # # # .
-            . # # # .
-            . . . . .
-            `)
-    } else {
-        basic.showLeds(`
-            # # . . #
-            # # . # .
-            . . # . .
-            # # . # .
-            # # . . #
-            `)
-    }
+    radio.sendMessage(RadioMessage.Sad)
+    music.playMelody("C5 B B C5 A G G A ", 120)
 })
 radio.onReceivedNumber(function (receivedNumber) {
     basic.showString("From Microbit Anas")
     music.playMelody("C D C D C E F G ", 120)
 })
-buttonClicks.onButtonDoubleClicked(buttonClicks.AorB.B, function () {
-    music.startMelody(music.builtInMelody(Melodies.Dadadadum), MelodyOptions.OnceInBackground)
-    if (Math.randomBoolean()) {
-        basic.showLeds(`
-            . . . . .
-            . # . # .
-            . . . . .
-            # . . . #
-            . # # # .
-            `)
-    } else {
-        basic.showLeds(`
-            . # # # .
-            # . . . #
-            . . . . .
-            . # . # .
-            . . . . .
-            `)
-    }
+radio.onReceivedMessage(RadioMessage.Smile, function () {
+    basic.showLeds(`
+        . . . . .
+        . # . # .
+        . . . . .
+        # . . . #
+        . # # # .
+        `)
+    music.playMelody("C C D D E E F F ", 120)
 })
-let RPS = 0
-let Who = 0
+radio.onReceivedMessage(RadioMessage.Sad, function () {
+    basic.showLeds(`
+        . . . . .
+        . # . # .
+        . . . . .
+        . # # # .
+        # . . . #
+        `)
+    music.playMelody("C D D C E F F E ", 120)
+})
+buttonClicks.onButtonDoubleClicked(buttonClicks.AorB.B, function () {
+    music.playMelody("C5 C5 B B A A G G ", 120)
+    radio.sendMessage(RadioMessage.Smile)
+})
 radio.setGroup(69)
 music.playSoundEffect(music.builtinSoundEffect(soundExpression.hello), SoundExpressionPlayMode.InBackground)
 basic.showLeds(`
