@@ -3,7 +3,7 @@
 
 ## Use as Extension
 
-This repository can be added as an **extension** in MakeCode.
+This repository is not an **Extension** in MakeCode.
 
 * open [https://makecode.microbit.org/](https://makecode.microbit.org/)
 * click on **New Project**
