@@ -1,14 +1,13 @@
 {
     "name": "My Microbit Official",
-    "version": "1.0.0",
+    "version": "1.1.1",
     "description": "",
     "dependencies": {
         "core": "*",
         "radio": "*",
         "microphone": "*",
         "microturtle": "github:microsoft/pxt-microturtle#v0.0.9",
-        "microbit-pxt-clicks": "github:bsiever/microbit-pxt-clicks#v0.2.2",
-        "radio-broadcast": "*"
+        "microbit-pxt-clicks": "github:bsiever/microbit-pxt-clicks#v0.2.2"
     },
     "files": [
         "main.blocks",
